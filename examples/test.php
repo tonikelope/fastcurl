@@ -5,7 +5,7 @@
  *
  * TEST FILE
  *
- * Copyright (c) 2010 Antonio López Vivar
+ * Copyright (c) 2010 Antonio Lï¿½pez Vivar
  * 
  * LICENSE:
  * 
@@ -25,8 +25,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package   FastCurl
- * @author    Antonio López Vivar <tonikelope@gmail.com>
- * @copyright 2010 Antonio López Vivar
+ * @author    Antonio Lï¿½pez Vivar <tonikelope@gmail.com>
+ * @copyright 2010 Antonio Lï¿½pez Vivar
  * @license   http://www.opensource.org/licenses/lgpl-license.php LGPL
  */
 
@@ -35,7 +35,6 @@ require_once('FastCurl.php');
 error_reporting(E_ALL ^ E_NOTICE | E_STRICT);
 
 try{
-	
 	//Create two FastCurl objects
 	$fc1 = new FastCurl(array('url' => 'http://www.yahoo.com'));
 	$fc2 = new FastCurl(array('url' => 'http://www.wikipedia.org'));
@@ -85,40 +84,49 @@ try{
 	$fc1->url = 'http://www.yahoo.com';
 	$res1 = $fc1->fetch();
 	
-    
-    //Let's try FastCurl cookie engine
-    $fc3 = new FastCurl(array('url' => 'http://google.com', '_fastcookies' => TRUE));
-    
-    //OPTIONAL
-    $fc3->cookiejar='fastcurl_cookies.txt'; 
-    
-    //Connect
-    $fc3->exec();
-    
-    //Delete a cookie (BEWARE -> (www.foo.com != foo.com))
-    $fc3->delete_fc_cookie('google.com', 'NID');
+	
+	//Let's try FastCurl cookie engine
+	$fc3 = new FastCurl(array('url' => 'http://google.com', '_fastcookies' => TRUE));
+	
+	
+	//OPTIONAL
+	$fc3->cookiejar='fastcurl_cookies.txt'; 
+	
+	
+	//Connect
+	$fc3->exec();
+	
+	
+	//Delete a cookie (BEWARE -> (www.foo.com != foo.com))
+	$fc3->delete_fc_cookie('google.com', 'NID');
+	
 	
 	//Set a new cookie
 	$fc3->set_fc_cookie('new_foo_cookie', 'foo');
 	
+	
 	//Change cookie
 	$fc3->set_fc_cookie('PREF', 1337);
 	
+	
 	//Dump all cookies
-    var_dump($fc3->get_fc_cookies());
+	var_dump($fc3->get_fc_cookies());
+	
 	
 	//Clean all cookies
 	$fc3->clean_fc_cookies();
 	
-    //Connect
-    $fc3->exec();
-
-	//Dump all cookies
-    var_dump($fc3->get_fc_cookies());
-    
-    //Create new FastCurl object with the same cookies from $fc3
-    $fc4 = new FastCurl(array('url' => 'http://google.com', '_fastcookies' => $fc3->get_fc_cookies()));
 	
+	//Connect
+	$fc3->exec();
+	
+	
+	//Dump all cookies
+	var_dump($fc3->get_fc_cookies());
+	
+	
+	//Create new FastCurl object with the same cookies from $fc3
+	$fc4 = new FastCurl(array('url' => 'http://google.com', '_fastcookies' => $fc3->get_fc_cookies()));
 	
 	
 	//Bye bye
@@ -126,7 +134,7 @@ try{
 	unset($fc2);
 	unset($fc3); //Cookies will be stored in 'fastcurl_cookies.txt'
 	unset($fc4);
-	
+
 
 }catch (Exception $e){
 	echo $e->getMessage();
