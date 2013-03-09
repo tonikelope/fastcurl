@@ -5,7 +5,7 @@
  *
  * TEST FILE
  *
- * Copyright (c) 2010 Antonio L�pez Vivar
+ * Copyright (c) 2010 Antonio López Vivar
  * 
  * LICENSE:
  * 
@@ -25,8 +25,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package   FastCurl
- * @author    Antonio L�pez Vivar <tonikelope@gmail.com>
- * @copyright 2010 Antonio L�pez Vivar
+ * @author    Antonio López Vivar <tonikelope@gmail.com>
+ * @copyright 2010 Antonio López Vivar
  * @license   http://www.opensource.org/licenses/lgpl-license.php LGPL
  */
 
