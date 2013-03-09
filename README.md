@@ -1,9 +1,7 @@
-This package can be used to send HTTP requests using Curl extension.
+There are two classes: one for sending regular HTTP requests and another to send multiple parallel requests (first includes later).
 
-There are two classes: one for sending regular HTTP requests and another to send multiple parallel requests.
+SSL is supported by default just using an url with 'https://'
 
-Both classes can send HTTP requests directly or via proxy, securely using SSL or not, setting the referrer URL, cookies, custom headers, etc...
+Every CURLOPT can be set with a class variable assignment. ($fc->url = 'http://github.com')
 
-Every Curl extension option can be set with a class variable assignment.
-
-It can also manage the cookie values that are sent each Web server by creating, updating and deleting cookie values which are shared by different objects of the class.
+It has its own cookies engine for set, edit or delete any cookie (it also supports cURL default cookies).
