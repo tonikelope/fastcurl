@@ -26,7 +26,7 @@
  * @author    Antonio López Vivar <tonikelope@gmail.com>
  * @copyright 2010 Antonio López Vivar
  * @license   http://opensource.org/licenses/lgpl-3.0.html LGPL
- * @version   3.4
+ * @version   3.4.1
  */
 	
 require_once('FastCurlMulti.php');
@@ -47,7 +47,7 @@ require_once('FastCurlMulti.php');
  */
 class FastCurl implements customHeaders, anonymizable
 {
-	const VERSION='3.4';
+	const VERSION='3.4.1';
 	
 	const FCURL_EXEC_BODY=1;
 	
@@ -1471,15 +1471,19 @@ class FastCurl implements customHeaders, anonymizable
 	 */
 	private function filter_res_curl($res)
 	{
+		$breakpoint = strpos($res , "\r\n\r\n");
+
 		switch($this->_exec_mode)
 		{
-			case self::FCURL_EXEC_BODY:
-				$res=preg_replace('/^.*?(?:HTTP *?\/ *?\d+\.\d+ +?\d{3}.*?\r\n\r\n)+(.*)$/is', '\1', $res);
-				break;
-				
 			case self::FCURL_EXEC_HEADERS:
-				$res=trim(preg_replace('/^(.*?(?:HTTP *?\/ *?\d+\.\d+ +?\d{3}.*?\r\n\r\n)+).*$/is', '\1', $res));
-				break;					
+
+				$res = substr($res, 0, $breakpoint);
+				break;			
+
+			case self::FCURL_EXEC_BODY:
+
+				$res = substr($res, $breakpoint + 4);
+				break;
 		}
 		
 		return $res;
